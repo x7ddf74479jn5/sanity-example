@@ -90,6 +90,7 @@ module.exports = {
         aspects: ["invalidHref", "preferButton"],
       },
     ],
+    "@next/next/no-img-element": "off",
   },
   overrides: [
     {
