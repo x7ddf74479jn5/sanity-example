@@ -4,11 +4,12 @@ module.exports = {
   parserOptions: {
     project: "./tsconfig.json",
   },
-  plugins: ["simple-import-sort", "sort-destructure-keys", "testing-library"],
+  settings: { tailwindcss: { groupByResponsive: true } },
+  plugins: ["simple-import-sort", "sort-destructure-keys", "tailwindcss"],
   extends: [
     "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
     "next/core-web-vitals",
-    "plugin:storybook/recommended",
     "prettier",
   ],
   rules: {
@@ -92,17 +93,11 @@ module.exports = {
   },
   overrides: [
     {
-      files: [
-        "playwright.config.ts",
-        "src/pages/**/*.tsx",
-        "src/pages/api/**/*.ts",
-        "next.config.js",
-        "src/**/*.stories.tsx",
-      ],
+      files: ["src/pages/**/*.tsx", "src/pages/api/**/*.ts", "next.config.js"],
       rules: { "import/no-default-export": "off" },
     },
     {
-      files: ["src/pages/**/*.tsx", "src/pages/api/**/*.ts", "next.config.mjs", "src/types/**/*.d.ts"],
+      files: ["src/pages/**/*.tsx", "src/pages/api/**/*.ts", "next.config.js", "src/types/**/*.d.ts"],
       rules: {
         "@typescript-eslint/naming-convention": [
           "error",
@@ -111,10 +106,6 @@ module.exports = {
           { selector: "variable", types: ["boolean"], format: ["PascalCase"], prefix: ["is", "has", "should"] },
         ],
       },
-    },
-    {
-      files: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
-      extends: ["plugin:testing-library/react"],
     },
   ],
 };
