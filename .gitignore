@@ -36,4 +36,4 @@ yarn-error.log*
 # Optional eslint cache
 .eslintcache
 
-/sanity
+sanity/node_modules
